@@ -6,6 +6,8 @@ import PlaceholderPage from "./pages/PlaceholderPage";
 import UsersPage from "./pages/UsersPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
+import OverdueTasksPage from "./pages/OverdueTasksPage";
+import TaskDetailPage from "./pages/TaskDetailPage";
 
 export default function App() {
   return (
@@ -19,8 +21,9 @@ export default function App() {
           element={<ProjectDetailPage />} />
         <Route
           path="tasks/overdue"
-          element={<PlaceholderPage title="Overdue tasks" phase="F6" />}
+          element={<OverdueTasksPage />}
         />
+        <Route path="tasks/:taskId" element={<TaskDetailPage />} />
         <Route path="labels" element={<PlaceholderPage title="Labels" phase="F7" />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
