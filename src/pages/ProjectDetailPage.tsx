@@ -10,6 +10,7 @@ import { useApiMutation } from "../lib/hooks";
 import { formatDate, formatEnum } from "../lib/format";
 import { btn, btnDanger, btnPrimary, link } from "../lib/ui";
 import { PROJECT_TRANSITIONS, type ProjectStatus } from "../types/enums";
+import MembersPanel from "../components/MembersPanel";
 
 type Tab = "overview" | "tasks" | "members" | "issues";
 const TABS: Tab[] = ["overview", "tasks", "members", "issues"];
@@ -95,7 +96,7 @@ export default function ProjectDetailPage() {
       <div className="mt-4">
         {tab === "overview" && <p className="text-slate-500">Overview: phase F9</p>}
         {tab === "tasks" && <p className="text-slate-500">Tasks: phase F6</p>}
-        {tab === "members" && <p className="text-slate-500">Members: phase F5</p>}
+        {tab === "members" && <MembersPanel projectId={project.id} />}
         {tab === "issues" && <p className="text-slate-500">Issues: phase F8</p>}
       </div>
 
