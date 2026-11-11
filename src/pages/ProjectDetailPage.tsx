@@ -12,6 +12,7 @@ import { btn, btnDanger, btnPrimary, link } from "../lib/ui";
 import { PROJECT_TRANSITIONS, type ProjectStatus } from "../types/enums";
 import MembersPanel from "../components/MembersPanel";
 import TasksPanel from "../components/TasksPanel";
+import IssuesPanel from "../components/IssuesPanel";
 
 type Tab = "overview" | "tasks" | "members" | "issues";
 const TABS: Tab[] = ["overview", "tasks", "members", "issues"];
@@ -98,7 +99,7 @@ export default function ProjectDetailPage() {
         {tab === "overview" && <p className="text-slate-500">Overview: phase F9</p>}
         {tab === "tasks" && <TasksPanel projectId={id} projectStatus={project.status} />}
         {tab === "members" && <MembersPanel projectId={project.id} />}
-        {tab === "issues" && <p className="text-slate-500">Issues: phase F8</p>}
+        {tab === "issues" && <IssuesPanel projectId={id} />}
       </div>
 
       {editing && <ProjectFormModal project={project} onClose={() => setEditing(false)} />}

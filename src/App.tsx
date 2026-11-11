@@ -9,6 +9,7 @@ import ProjectDetailPage from "./pages/ProjectDetailPage";
 import OverdueTasksPage from "./pages/OverdueTasksPage";
 import TaskDetailPage from "./pages/TaskDetailPage";
 import LabelsPage from "./pages/LabelsPage";
+import IssueDetailPage from "./pages/IssueDetailPage";
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
         />
         <Route path="tasks/:taskId" element={<TaskDetailPage />} />
         <Route path="labels" element={<LabelsPage />} />
+        <Route path="issues/:issueId" element={<IssueDetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
