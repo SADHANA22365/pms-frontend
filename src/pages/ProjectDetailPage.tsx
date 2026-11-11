@@ -13,6 +13,7 @@ import { PROJECT_TRANSITIONS, type ProjectStatus } from "../types/enums";
 import MembersPanel from "../components/MembersPanel";
 import TasksPanel from "../components/TasksPanel";
 import IssuesPanel from "../components/IssuesPanel";
+import ProjectOverview from "../components/ProjectOverview";
 
 type Tab = "overview" | "tasks" | "members" | "issues";
 const TABS: Tab[] = ["overview", "tasks", "members", "issues"];
@@ -96,7 +97,7 @@ export default function ProjectDetailPage() {
       </div>
 
       <div className="mt-4">
-        {tab === "overview" && <p className="text-slate-500">Overview: phase F9</p>}
+        {tab === "overview" && <ProjectOverview projectId={id} />}
         {tab === "tasks" && <TasksPanel projectId={id} projectStatus={project.status} />}
         {tab === "members" && <MembersPanel projectId={project.id} />}
         {tab === "issues" && <IssuesPanel projectId={id} />}
