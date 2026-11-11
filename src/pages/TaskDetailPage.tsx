@@ -15,6 +15,8 @@ import { useApiMutation, useMembers } from "../lib/hooks";
 import { formatDate, formatEnum } from "../lib/format";
 import { btn, btnDanger, btnPrimary, card, input, link } from "../lib/ui";
 import { TASK_TRANSITIONS, type TaskStatus } from "../types/enums";
+import LabelsSection from "../components/LabelsSection";
+import CommentsSection from "../components/CommentsSection";
 
 export default function TaskDetailPage() {
   const id = Number(useParams().taskId);
@@ -123,7 +125,8 @@ export default function TaskDetailPage() {
         </div>
       </div>
 
-      {/* F7 adds labels and comments here */}
+      <LabelsSection task={task} />
+      <CommentsSection task={task} />
 
       {editing && (
         <TaskFormModal projectId={task.projectId} task={task} onClose={() => setEditing(false)} />
