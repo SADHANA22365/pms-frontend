@@ -11,3 +11,9 @@ export function formatDate(iso?: string | null): string {
   const d = new Date(iso.length === 10 ? `${iso}T00:00:00` : iso);
   return d.toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" });
 }
+
+// "" or whitespace -> undefined, so optional fields are omitted from the JSON.
+export function blankToUndefined(v: string): string | undefined {
+  const t = v.trim();
+  return t === "" ? undefined : t;
+}

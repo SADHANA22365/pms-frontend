@@ -3,13 +3,14 @@ import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import PlaceholderPage from "./pages/PlaceholderPage";
+import UsersPage from "./pages/UsersPage";
 
 export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="users" element={<PlaceholderPage title="Users" phase="F3" />} />
+        <Route path="users" element={<UsersPage />} />
         <Route path="projects" element={<PlaceholderPage title="Projects" phase="F4" />} />
         <Route
           path="projects/:projectId"
