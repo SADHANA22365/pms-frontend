@@ -1,75 +1,35 @@
-# React + TypeScript + Vite
+# PMS Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + TypeScript + Tailwind CSS (v4) frontend for the Project Management System REST API
+(Spring Boot, separate repository: project-management-system).
 
-Currently, two official plugins are available:
+## Features
+- Users: paged list, create/edit with server-side validation messages, activate/deactivate, workload report
+- Projects: status filter, paging, create/edit/delete, status workflow (backend rules shown as toasts)
+- Members: add, change role, remove (last-LEAD and open-task rules surfaced from the API)
+- Tasks: per-project list, create/edit, status workflow, assign/unassign, global overdue view
+- Labels and comments: label CRUD, attach/detach, comments with edit/delete
+- Issues: filters, workflow buttons, assignment, statistics
+- Reports: dashboard, project progress overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech
+Vite, React 19, TypeScript, Tailwind v4, React Router, TanStack Query v5, plain `fetch`.
+There is no login because the backend has no authentication. Wherever an action needs "who is doing this" (reporter, comment author), a user dropdown is used.
 
-## React Compiler
+## Run
+1. Start the backend on http://localhost:8080 (CORS allows http://localhost:5173).
+2. `npm install`
+3. `npm run dev` then open http://localhost:5173
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Optional: copy `.env.example` to `.env` to change the API URL.
 
-## Expanding the ESLint configuration
+## Scripts
+`npm run dev`, `npm run build`, `npm run lint`
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Screenshots
+![Dashboard](docs/screenshots/dashboard.png)
+![Project overview](docs/screenshots/project-overview.png)
+![Tasks](docs/screenshots/tasks.png)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+## Notes
+- Issues use the workflow OPEN, IN_PROGRESS, RESOLVED, CLOSED, REOPENED (an enhancement over the original SRS bug workflow).
