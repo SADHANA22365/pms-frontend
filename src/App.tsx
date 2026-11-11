@@ -4,6 +4,8 @@ import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import UsersPage from "./pages/UsersPage";
+import ProjectsPage from "./pages/ProjectsPage";
+import ProjectDetailPage from "./pages/ProjectDetailPage";
 
 export default function App() {
   return (
@@ -11,11 +13,10 @@ export default function App() {
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="users" element={<UsersPage />} />
-        <Route path="projects" element={<PlaceholderPage title="Projects" phase="F4" />} />
+        <Route path="projects" element={<ProjectsPage />} />
         <Route
           path="projects/:projectId"
-          element={<PlaceholderPage title="Project detail" phase="F4" />}
-        />
+          element={<ProjectDetailPage />} />
         <Route
           path="tasks/overdue"
           element={<PlaceholderPage title="Overdue tasks" phase="F6" />}
