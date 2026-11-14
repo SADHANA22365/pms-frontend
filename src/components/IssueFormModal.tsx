@@ -68,14 +68,16 @@ export default function IssueFormModal({
           save.mutate();
         }}
       >
-        <Field label="Title" error={fe.title}>
-          <input className={input} {...bind("title")} />
+        <Field label="Issue Title" error={fe.title}>
+          <input className={input} required placeholder="e.g. Memory leak in background worker" {...bind("title")} />
         </Field>
+
         <Field label="Description (optional)" error={fe.description}>
-          <textarea rows={3} className={input} {...bind("description")} />
+          <textarea rows={3} className={input} placeholder="Steps to reproduce, expected vs actual behavior..." {...bind("description")} />
         </Field>
-        <div className="grid grid-cols-2 gap-3">
-          <Field label="Type" error={fe.type}>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <Field label="Issue Type" error={fe.type}>
             <select className={input} {...bind("type")}>
               {ISSUE_TYPES.map((t) => (
                 <option key={t} value={t}>
@@ -86,7 +88,7 @@ export default function IssueFormModal({
           </Field>
           <Field label="Severity" error={fe.severity}>
             <select className={input} required={!!issue} {...bind("severity")}>
-              {!issue && <option value="">Default</option>}
+              {!issue && <option value="">Default (Medium)</option>}
               {ISSUE_SEVERITIES.map((s) => (
                 <option key={s} value={s}>
                   {formatEnum(s)}
@@ -95,8 +97,9 @@ export default function IssueFormModal({
             </select>
           </Field>
         </div>
+
         {!issue && (
-          <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Field label="Reporter" error={fe.reporterId}>
               <select className={input} required {...bind("reporterId")}>
                 <option value="">Who is reporting this?</option>
@@ -117,9 +120,10 @@ export default function IssueFormModal({
                 ))}
               </select>
             </Field>
-          </>
+          </div>
         )}
-        <div className="flex justify-end gap-2">
+
+        <div className="sticky bottom-0 -mx-5 -mb-4 mt-6 flex flex-col-reverse sm:flex-row justify-end gap-2.5 border-t border-border bg-white px-5 py-3.5">
           <button type="button" className={btn} onClick={onClose}>
             Cancel
           </button>

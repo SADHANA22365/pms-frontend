@@ -50,12 +50,15 @@ export default function UserFormModal({
           save.mutate();
         }}
       >
-        <Field label="Full name" error={fe.fullName}>
-          <input className={input} {...bind("fullName")} />
-        </Field>
-        <Field label="Email" error={fe.email}>
-          <input className={input} {...bind("email")} />
-        </Field>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+          <Field label="Full name" error={fe.fullName}>
+            <input className={input} required {...bind("fullName")} />
+          </Field>
+          <Field label="Email" error={fe.email}>
+            <input type="email" className={input} required {...bind("email")} />
+          </Field>
+        </div>
+
         <Field label="Designation" error={fe.designation}>
           <select className={input} {...bind("designation")}>
             {DESIGNATIONS.map((d) => (
@@ -65,16 +68,21 @@ export default function UserFormModal({
             ))}
           </select>
         </Field>
-        <Field label="Phone (optional)" error={fe.phoneNumber}>
-          <input className={input} {...bind("phoneNumber")} />
-        </Field>
-        <Field label="Location (optional)" error={fe.location}>
-          <input className={input} {...bind("location")} />
-        </Field>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+          <Field label="Phone (optional)" error={fe.phoneNumber}>
+            <input type="tel" className={input} {...bind("phoneNumber")} />
+          </Field>
+          <Field label="Location (optional)" error={fe.location}>
+            <input className={input} {...bind("location")} />
+          </Field>
+        </div>
+
         <Field label="Bio (optional)" error={fe.bio}>
           <textarea rows={3} className={input} {...bind("bio")} />
         </Field>
-        <div className="flex justify-end gap-2">
+
+        <div className="sticky bottom-0 -mx-5 -mb-4 mt-6 flex flex-col-reverse sm:flex-row justify-end gap-2.5 border-t border-border bg-white px-5 py-3.5">
           <button type="button" className={btn} onClick={onClose}>
             Cancel
           </button>

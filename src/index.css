@@ -1,1 +1,91 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Primary orange tokens */
+  --color-primary: #FF8A00;
+  --color-primary-hover: #E67A00;
+  --color-primary-active: #CC6B00;
+  --color-primary-soft: #FFF3E0;
+  --color-primary-subtle: #FFF9F2;
+  --color-primary-border: #FFD4A3;
+
+  /* Deep royal blue / navy tokens */
+  --color-navy: #0B3B6F;
+  --color-navy-hover: #082E57;
+  --color-navy-active: #062343;
+  --color-navy-soft: #E8EFF7;
+  --color-navy-subtle: #F0F4FA;
+  --color-navy-border: #CBDCEE;
+
+  /* Surfaces & backgrounds */
+  --color-surface: #FFFFFF;
+  --color-surface-bg: #F6F8FB;
+  --color-surface-card: #FFFFFF;
+  --color-surface-subtle: #F8FAFC;
+  --color-surface-muted: #EEF2F6;
+
+  /* Borders */
+  --color-border: #E3E8EF;
+  --color-border-hover: #CBD5E1;
+  --color-border-focus: #FF8A00;
+
+  /* Text */
+  --color-text-main: #1F2937;
+  --color-text-muted: #64748B;
+  --color-text-navy: #0B3B6F;
+
+  /* Semantic status tokens (muted, low-saturation, accessible) */
+  --color-success: #15803D;
+  --color-success-bg: #DCFCE7;
+  --color-success-border: #BBF7D0;
+  --color-success-text: #166534;
+
+  --color-warning: #B45309;
+  --color-warning-bg: #FEF3C7;
+  --color-warning-border: #FDE68A;
+  --color-warning-text: #92400E;
+
+  --color-danger: #B91C1C;
+  --color-danger-hover: #991B1B;
+  --color-danger-bg: #FEE2E2;
+  --color-danger-border: #FECACA;
+  --color-danger-text: #991B1B;
+
+  --color-info: #0369A1;
+  --color-info-bg: #E0F2FE;
+  --color-info-border: #BAE6FD;
+  --color-info-text: #075985;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-text-main);
+    background-color: var(--color-surface-bg);
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: var(--color-surface-bg);
+    color: var(--color-text-main);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}

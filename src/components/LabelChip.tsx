@@ -1,13 +1,17 @@
 import type { LabelResponse } from "../types/api";
 
-export default function LabelChip({ label }: { label: Pick<LabelResponse, "name" | "colourCode"> }) {
+export default function LabelChip({
+  label,
+}: {
+  label: Pick<LabelResponse, "name" | "colourCode">;
+}) {
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-xs">
+    <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-white px-2.5 py-0.5 text-xs font-semibold text-navy shadow-2xs transition-colors hover:border-navy-border">
       <span
-        className="inline-block h-2.5 w-2.5 rounded-full"
-        style={{ backgroundColor: label.colourCode ?? "#94a3b8" }}
+        className="inline-block h-2 w-2 rounded-full shrink-0"
+        style={{ backgroundColor: label.colourCode ?? "#0B3B6F" }}
       />
-      {label.name}
+      <span className="truncate max-w-[150px]">{label.name}</span>
     </span>
   );
 }

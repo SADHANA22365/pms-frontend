@@ -1,35 +1,44 @@
 import { formatEnum } from "../lib/format";
 
 const colors: Record<string, string> = {
-  PLANNED: "bg-slate-100 text-slate-700",
-  ACTIVE: "bg-green-100 text-green-700",
-  ON_HOLD: "bg-amber-100 text-amber-700",
-  COMPLETED: "bg-blue-100 text-blue-700",
-  CANCELLED: "bg-red-100 text-red-700",
-  TODO: "bg-slate-100 text-slate-700",
-  IN_PROGRESS: "bg-blue-100 text-blue-700",
-  IN_REVIEW: "bg-purple-100 text-purple-700",
-  BLOCKED: "bg-red-100 text-red-700",
-  DONE: "bg-green-100 text-green-700",
-  LOW: "bg-slate-100 text-slate-600",
-  MEDIUM: "bg-sky-100 text-sky-700",
-  HIGH: "bg-orange-100 text-orange-700",
-  CRITICAL: "bg-red-100 text-red-700",
-  OPEN: "bg-amber-100 text-amber-700",
-  RESOLVED: "bg-green-100 text-green-700",
-  CLOSED: "bg-slate-200 text-slate-700",
-  REOPENED: "bg-orange-100 text-orange-700",
-  MINOR: "bg-slate-100 text-slate-600",
-  MAJOR: "bg-orange-100 text-orange-700",
-  BLOCKER: "bg-red-200 text-red-800",
+  // Project statuses
+  PLANNED: "bg-navy-soft text-navy border-navy-border/70",
+  ACTIVE: "bg-success-bg text-success-text border-success-border",
+  ON_HOLD: "bg-warning-bg text-warning-text border-warning-border",
+  COMPLETED: "bg-emerald-50 text-emerald-800 border-emerald-200",
+  CANCELLED: "bg-slate-100 text-slate-600 border-slate-200",
+
+  // Task statuses
+  TODO: "bg-slate-100 text-slate-700 border-slate-200",
+  IN_PROGRESS: "bg-primary-soft text-primary-active border-primary-border",
+  IN_REVIEW: "bg-navy-soft text-navy border-navy-border",
+  BLOCKED: "bg-danger-bg text-danger-text border-danger-border",
+  DONE: "bg-success-bg text-success-text border-success-border",
+
+  // Priority
+  LOW: "bg-slate-100 text-slate-600 border-slate-200",
+  MEDIUM: "bg-info-bg text-info-text border-info-border",
+  HIGH: "bg-primary-soft text-primary-active border-primary-border",
+  CRITICAL: "bg-danger-bg text-danger-text border-danger-border",
+
+  // Issue statuses
+  OPEN: "bg-info-bg text-info-text border-info-border",
+  RESOLVED: "bg-success-bg text-success-text border-success-border",
+  CLOSED: "bg-slate-100 text-slate-600 border-slate-200",
+  REOPENED: "bg-warning-bg text-warning-text border-warning-border",
+
+  // Issue severities
+  MINOR: "bg-slate-100 text-slate-600 border-slate-200",
+  MAJOR: "bg-primary-soft text-primary-active border-primary-border",
+  BLOCKER: "bg-danger-bg text-danger-text border-danger-border",
 };
 
 export default function Badge({ value }: { value: string }) {
+  const colorClass = colors[value] ?? "bg-slate-100 text-slate-700 border-slate-200";
+
   return (
     <span
-      className={`inline-block whitespace-nowrap rounded px-2 py-0.5 text-xs font-medium ${
-        colors[value] ?? "bg-slate-100 text-slate-700"
-      }`}
+      className={`inline-flex items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold ${colorClass}`}
     >
       {formatEnum(value)}
     </span>

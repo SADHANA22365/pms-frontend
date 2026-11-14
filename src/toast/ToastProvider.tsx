@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useRef, useState, type ReactNode } from "react";
+import { AlertCircle, CheckCircle2, X } from "lucide-react";
 import { ToastContext, type ToastApi } from "./toast-context";
 
 interface ToastItem {
@@ -36,24 +37,36 @@ export default function ToastProvider({ children }: { children: ReactNode }) {
   return (
     <ToastContext.Provider value={api}>
       {children}
-      <div className="fixed right-4 top-4 z-50 flex w-80 flex-col gap-2">
+      <div
+        aria-live="polite"
+        className="fixed top-3 inset-x-3 sm:inset-x-auto sm:right-5 sm:top-5 z-50 flex flex-col gap-2.5 sm:w-96 pointer-events-none"
+      >
         {toasts.map((t) => (
           <div
             key={t.id}
             role="alert"
-            className={`flex items-start justify-between gap-3 rounded border p-3 text-sm shadow ${
+            className={`pointer-events-auto flex items-start justify-between gap-3 rounded-xl border bg-white p-4 text-sm shadow-md transition-all ${
               t.type === "error"
-                ? "border-red-200 bg-red-50 text-red-800"
-                : "border-green-200 bg-green-50 text-green-800"
+                ? "border-border border-l-4 border-l-danger text-text-main"
+                : "border-border border-l-4 border-l-success text-text-main"
             }`}
           >
-            <span>{t.message}</span>
+            <div className="flex items-start gap-2.5 min-w-0">
+              {t.type === "error" ? (
+                <AlertCircle className="h-5 w-5 shrink-0 text-danger mt-0.5" />
+              ) : (
+                <CheckCircle2 className="h-5 w-5 shrink-0 text-success mt-0.5" />
+              )}
+              <span className="font-medium text-text-main leading-snug break-words">
+                {t.message}
+              </span>
+            </div>
             <button
               onClick={() => dismiss(t.id)}
               aria-label="Dismiss"
-              className="font-bold leading-none opacity-60 hover:opacity-100"
+              className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-text-muted hover:text-navy hover:bg-navy-soft transition-colors cursor-pointer"
             >
-              ×
+              <X className="h-3.5 w-3.5" />
             </button>
           </div>
         ))}

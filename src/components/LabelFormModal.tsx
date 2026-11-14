@@ -16,7 +16,7 @@ export default function LabelFormModal({
 }) {
   const { values, bind } = useFields({
     name: label?.name ?? "",
-    colourCode: label?.colourCode ?? "#4f46e5",
+    colourCode: label?.colourCode ?? "#FF8A00",
   });
   const save = useApiMutation(
     () => {
@@ -36,13 +36,27 @@ export default function LabelFormModal({
           save.mutate();
         }}
       >
-        <Field label="Name" error={fe.name}>
-          <input className={input} {...bind("name")} />
+        <Field label="Label Name" error={fe.name}>
+          <input className={input} required placeholder="e.g. Bug, Feature, Documentation" {...bind("name")} />
         </Field>
-        <Field label="Colour" error={fe.colourCode}>
-          <input type="color" className="h-9 w-20 rounded border" {...bind("colourCode")} />
+
+        <Field label="Accent Color" error={fe.colourCode}>
+          <div className="flex items-center gap-3">
+            <input
+              type="color"
+              className="h-10 w-16 rounded-lg border border-border p-1 bg-white cursor-pointer"
+              {...bind("colourCode")}
+            />
+            <input
+              type="text"
+              className={`${input} w-32 font-mono uppercase`}
+              placeholder="#FF8A00"
+              {...bind("colourCode")}
+            />
+          </div>
         </Field>
-        <div className="flex justify-end gap-2">
+
+        <div className="sticky bottom-0 -mx-5 -mb-4 mt-6 flex flex-col-reverse sm:flex-row justify-end gap-2.5 border-t border-border bg-white px-5 py-3.5">
           <button type="button" className={btn} onClick={onClose}>
             Cancel
           </button>

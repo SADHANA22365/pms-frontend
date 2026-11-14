@@ -52,19 +52,22 @@ export default function ProjectFormModal({
         }}
       >
         <Field label="Name" error={fe.name}>
-          <input className={input} {...bind("name")} />
+          <input className={input} required {...bind("name")} />
         </Field>
+
         <Field label="Description (optional)" error={fe.description}>
           <textarea rows={3} className={input} {...bind("description")} />
         </Field>
-        <div className="grid grid-cols-2 gap-3">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Field label="Start date" error={fe.startDate}>
-            <input type="date" className={input} {...bind("startDate")} />
+            <input type="date" className={input} required {...bind("startDate")} />
           </Field>
           <Field label="End date (optional)" error={fe.endDate}>
             <input type="date" className={input} {...bind("endDate")} />
           </Field>
         </div>
+
         {!project && (
           <Field label="Manager" error={fe.managerId}>
             <select className={input} required {...bind("managerId")}>
@@ -77,7 +80,8 @@ export default function ProjectFormModal({
             </select>
           </Field>
         )}
-        <div className="flex justify-end gap-2">
+
+        <div className="sticky bottom-0 -mx-5 -mb-4 mt-6 flex flex-col-reverse sm:flex-row justify-end gap-2.5 border-t border-border bg-white px-5 py-3.5">
           <button type="button" className={btn} onClick={onClose}>
             Cancel
           </button>

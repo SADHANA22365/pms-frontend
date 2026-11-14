@@ -62,13 +62,15 @@ export default function TaskFormModal({
           save.mutate();
         }}
       >
-        <Field label="Title" error={fe.title}>
-          <input className={input} {...bind("title")} />
+        <Field label="Task Title" error={fe.title}>
+          <input className={input} required placeholder="e.g. Implement user authentication" {...bind("title")} />
         </Field>
+
         <Field label="Description (optional)" error={fe.description}>
-          <textarea rows={3} className={input} {...bind("description")} />
+          <textarea rows={3} className={input} placeholder="Provide details, scope, or context..." {...bind("description")} />
         </Field>
-        <div className="grid grid-cols-3 gap-3">
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <Field label="Priority" error={fe.priority}>
             <select className={input} {...bind("priority")}>
               {TASK_PRIORITIES.map((p) => (
@@ -81,12 +83,13 @@ export default function TaskFormModal({
           <Field label="Due date" error={fe.dueDate}>
             <input type="date" className={input} {...bind("dueDate")} />
           </Field>
-          <Field label="Est. hours (0.5-500)" error={fe.estimatedHours}>
-            <input type="number" step="0.5" className={input} {...bind("estimatedHours")} />
+          <Field label="Est. hours" error={fe.estimatedHours}>
+            <input type="number" step="0.5" className={input} placeholder="e.g. 4.0" {...bind("estimatedHours")} />
           </Field>
         </div>
+
         {!task && (
-          <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Field label="Reporter" error={fe.reporterId}>
               <select className={input} required {...bind("reporterId")}>
                 <option value="">Who is reporting this?</option>
@@ -107,9 +110,10 @@ export default function TaskFormModal({
                 ))}
               </select>
             </Field>
-          </>
+          </div>
         )}
-        <div className="flex justify-end gap-2">
+
+        <div className="sticky bottom-0 -mx-5 -mb-4 mt-6 flex flex-col-reverse sm:flex-row justify-end gap-2.5 border-t border-border bg-white px-5 py-3.5">
           <button type="button" className={btn} onClick={onClose}>
             Cancel
           </button>
